@@ -1,15 +1,12 @@
-connection: "looker-private-demo"
+connection: "argolis"
 
 include: "/views/*.view.lkml"
 
+label: "Z) Simple Model"
+
+
 explore: order_items {
-  fields: [ALL_FIELDS*, -users.id]
   join: users {
-    type: left_outer
-    sql_on: ${order_items.user_id} = ${users.id};;
-    relationship: many_to_one
+    sql_on: ${order_items.user_id} = ${users.id} ;;
   }
 }
-
-
-explore: users {}
